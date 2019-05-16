@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+  install-config: |
+    apiVersion: v1
+    baseDomain: metalkube.org
+    compute:
+    - hyperthreading: Enabled
+      name: worker
+      platform: {}
+      replicas: 3
+    controlPlane:
+      hyperthreading: Enabled
+      name: master
+      platform:
+        ovirt: {}
+      replicas: 3
+    metadata:
+      creationTimestamp: null
+      name: blue
+    networking:
+      clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+      machineCIDR: 10.0.0.0/16
+      networkType: OpenShiftSDN
+      serviceNetwork:
+      - 172.30.0.0/16
+    platform:
+      ovirt:
+        api_floating_ip: 10.35.0.19
+        ovirt_password: "123"
+        ovirt_url: https://rgolan.usersys.redhat.com:8443/ovirt-engine/api
+        ovirt_username: admin@internal
+    pullSecret: ""
+    sshKey: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDX95Yb4UAiBLh+6KAchctC7VrUGghC7OLyJJctkA+wxOL3gBSUz1Y95J+PSh1nkuftKGM2Nl4vPULq9UgfpygjetLuiDI4x59IGCmaAKmvTr+moT/DsteIIj2P4JVTxEFFwF55tp4n8Yypd4up20yhj737FmO1AOzjaHHDodGQiXn6cJy5Kd+vn0HSTi6nkR2pyodBWRhV58swAAc3OkjAG2SqCLxuvT1UdXgAY1TJfnE6WBzOGcJ9KyvSFK0M9ROfnsXEvDXDo3zzz0hSWDqH6NqjBVMSULxB143ek80A2ShtcQjV5Xpdu7RBzoA/cFvRBz2pHt3XgwyrJybRNepAS8HzHQ2D/rcsRZ45QnSeHWx4xOhFKWFJ9Ohr9mdX8WkxGVhlavsEZzJndjxGKEMa4HIZ5jm8Y8VJ3PG6kcDfquE7q4h0EopNc2PSRVKX4WhPFT1CmerRerCJAlTegS2VMkCeBiLlfm7if3PWNWKUfH4+4eOGayHoazQdMWwqi4ryV1SwxhrBCFimBTARbufwMIwWf6kDEETpu93+Lpb7/m0JdAKghlSbUqS3YdV0IW73fGRfvj9NpyiUlGkgT4Z1HtHiNWKWhPxeUAtKncPjCI7YUYb1UPLvRh7IrhQVbvdajFzSTFC/e0bstbYIE2KYYjeuPme85wjv+Jqd76O7Ww== rgolan@redhat.com
+kind: ConfigMap
+metadata:
+  name: cluster-config-v1
+  namespace: kube-system

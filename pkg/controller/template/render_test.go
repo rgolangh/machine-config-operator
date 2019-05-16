@@ -43,7 +43,11 @@ func TestCloudProvider(t *testing.T) {
 	}, {
 		platform: "none",
 		res:      "",
-	}}
+	}, {
+		platform: "ovirt",
+		res: "ovirt",
+		},
+	}
 	for idx, c := range cases {
 		name := fmt.Sprintf("case #%d", idx)
 		t.Run(name, func(t *testing.T) {
