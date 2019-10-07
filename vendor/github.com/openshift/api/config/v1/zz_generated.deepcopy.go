@@ -2716,6 +2716,11 @@ func (in *PlatformStatus) DeepCopyInto(out *PlatformStatus) {
 		*out = new(OpenStackPlatformStatus)
 		**out = **in
 	}
+	if in.Ovirt != nil {
+		in, out := &in.Ovirt, &out.Ovirt
+		*out = new(OvirtPlatformStatus)
+		**out = **in
+	}
 	return
 }
 
